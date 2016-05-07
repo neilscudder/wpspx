@@ -1,0 +1,20 @@
+.settings_page_wpspx-settings .notice {
+	margin-left: 0;
+	margin-top: 20px;
+}
+
+.wpspx-settings {
+	position: relative;
+}
+
+.wpspx-logo {
+	width: 173px;
+	padding: 5px 0px;
+}
+
+#cachebuster {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+

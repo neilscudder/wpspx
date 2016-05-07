@@ -1,0 +1,6 @@
+
+*.crt
+
+*.key
+
+lib/config.php
