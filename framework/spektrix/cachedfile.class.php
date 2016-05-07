@@ -73,6 +73,7 @@ class CachedFile extends Spectrix {
   */
   private function build_file_name($resource, $params){
     $ext = '.txt';
+    $params_string = "";
     if(empty($params)):
       return $resource.$ext;
     else:
