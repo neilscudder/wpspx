@@ -1,13 +1,19 @@
 <?php
 
-// time to create some page setting
+// load helpers
+require 'array_colums.php';
+require 'number_to_words.php';
+require 'misc.php';
 
 
 // enqueue the admin CSS
-add_action( 'admin_enqueue_scripts', 'wpspx_admin_style' );
-function wpspx_admin_style() {
+add_action( 'admin_enqueue_scripts', 'wpspx_admin_scripts' );
+function wpspx_admin_scripts() {
+    wp_register_script( 'wpspk_select', plugins_url( '/assets/js', __FILE__ ) . '/wpspk.js', array( 'jquery' ), '1.0', true );
     wp_register_style( 'wpspx_admin_css', plugins_url( '/assets/css', __FILE__ ) . '/wpspx.css', false, '1.0' );
+    
     wp_enqueue_style( 'wpspx_admin_css' );
+    wp_enqueue_script( 'wpspk_select' );
 }
 
 // Menu Item
@@ -20,21 +26,6 @@ function wpspx_settings_menu() {
         'wpspx-settings',
         'wpspx_settings'
     );
-}
-
-function wpspk_bust_cache() {
-    $cached_files = WPPSX_PLUGIN_DIR . 'cache/*.txt';
-
-    try {
-        array_map('unlink', glob($cached_files)); ?>
-        <div class="notice notice-success is-dismissible">
-            <p><?php _e( 'KaPow! Spektrix cache has been Busted.!', 'wpspx' ); ?></p>
-        </div>
-    <?php } catch (Exception $e) { ?>
-        <div class="notice notice-success is-dismissible">
-            <p>Oops... <?php echo  $e->getMessage() . '\n'; ?></p>
-        </div>
-    <?php }
 }
 
 // Settings Page

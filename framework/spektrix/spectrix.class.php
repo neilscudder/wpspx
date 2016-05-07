@@ -23,6 +23,7 @@ class Spectrix
 
   function build_url($resource,$params = array())
   {
+    $params_string = "";
     if(empty($params)):
       $url = self::$api_url.$resource."?&api_key=".self::$api_key;
     else:

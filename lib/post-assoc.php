@@ -33,6 +33,7 @@ function spectrix_record_add_custom_box() {
 function spectrix_record_inner_custom_box( $post ) {
 	global $pagenow;
 	if($pagenow == 'post-new.php'){
+
 		// Use nonce for verification
 		wp_nonce_field( plugin_basename( __FILE__ ), 'wpspx' );
 		$shows_in_spectrix = Show::find_all();
@@ -49,7 +50,7 @@ function spectrix_record_inner_custom_box( $post ) {
 		_e("Choose from show from Spektrix", 'wpspx' );
 		echo '</label> ';
 
-		echo '<select id="myplugin_new_field" name="spectrix_data">';
+		echo '<select id="myplugin_new_field" name="spectrix_data" class="advanced-selectbox">';
 		foreach($shows_in_spectrix as $show):
 			// Check it's not already in WP.
 			if(!in_array($show->id,$wp_shows)){
@@ -71,34 +72,40 @@ function spectrix_record_inner_custom_box( $post ) {
 /* When the post is saved, saves our custom data */
 function wpspx_save_postdata($post_id) {
 
+	// check if user can edit the post
 	if ( ! current_user_can( 'edit_post', $post_id ) )
     	return;
 
-	// Secondly we need to check if the user intended to change this value.
-	//if ( ! isset( $_POST['myplugin_noncename'] ) || ! wp_verify_nonce( $_POST['myplugin_noncename'], plugin_basename( __FILE__ ) ) )
-    //return;
+	// Secondly, check if the user intended to change this value.
+	//if ( !isset( $_POST['wpspk-nonce'] ) || !wp_verify_nonce( $_POST['wpspk-nonce'], plugin_basename( __FILE__ ) ) )
+    	//return;
 
-	//if saving in a custom table, get post_ID
-	$post_ID = $_POST['post_ID'];
+	// if saving in a custom table, get post_ID
+	if (isset($_POST['post_ID'])) {
+		$post_ID = $_POST['post_ID'];
+	}
 
-	//sanitize user input
-	if($_POST['not_spektrix'] == "1"){
+	// sanitize user input
+	if(isset($_POST['not_spektrix']) == "1"){
 		$override_title = sanitize_text_field($_POST['spektrix_override']);
+		
 		//remove action to prevent infinite loop
 		remove_action('save_post','wpspx_save_postdata');
 		wp_update_post(array('ID'=>$post_ID,'post_title'=>$override_title,'post_name'=>str_replace(' ','-',$override_title)));
 		add_action('save_post','wpspx_save_postdata');
 	} else {
-		$spectrix_data = sanitize_text_field($_POST['spectrix_data']);
-		$spectrix_data = explode('|',$spectrix_data);
+		if (isset($_POST['spectrix_data'])) {
+			$spectrix_data = sanitize_text_field($_POST['spectrix_data']);
+			$spectrix_data = explode('|',$spectrix_data);
 
-		//remove action to prevent infinite loop
-		remove_action('save_post','wpspx_save_postdata');
-		wp_update_post(array('ID'=>$post_ID,'post_title'=>$spectrix_data[1],'post_name'=>str_replace(' ','-',$spectrix_data[1])));
-		add_action('save_post','wpspx_save_postdata');
+			//remove action to prevent infinite loop
+			remove_action('save_post','wpspx_save_postdata');
+			wp_update_post(array('ID'=>$post_id,'post_title'=>$spectrix_data[1],'post_name'=>str_replace(' ','-',$spectrix_data[1])));
+			add_action('save_post','wpspx_save_postdata');
 
-		add_post_meta($post_ID, '_spectrix_id', $spectrix_data[0], true) or
-		update_post_meta($post_ID, '_spectrix_id', $spectrix_data[0]);
+			add_post_meta($post_id, '_spectrix_id', $spectrix_data[0], true) or
+			update_post_meta($post_id, '_spectrix_id', $spectrix_data[0]);
+		}
 	}
 }
 
