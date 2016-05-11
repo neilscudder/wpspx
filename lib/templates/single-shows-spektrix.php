@@ -34,24 +34,21 @@ get_header();
 				<small>
 					<a href="#prices" class="scoller btn btn-info">Jump to performances and prices</a>
 				</small>
-				<small class="quickbooklink">
-					<a id="quickbook" class="btn btn-primary">Buy Tickets</a>
-				</small>
 				<?php endif ?>
 			</h3>
 		</div>
 	</div>
-	
-	<?php if($is_in_future) include 'partials/quickbuy.php'; ?>
-  
+
   	<hr>
 
 	<div class="row">
 		<div class="span3 showcard">
-			<?php if(has_post_thumbnail()): ?>
-				<?php the_post_thumbnail('poster'); ?>
-			<?php else: ?>
-			<img src="<?php echo $dir ?>/img/no-image.gif">
+
+			<?php 
+			if(has_post_thumbnail()):
+				the_post_thumbnail('poster');
+			else: ?>
+			<img src="<?php echo WPPSX_PLUGIN_URL; ?>lib/assets/no-image.jpg">
 			<?php endif; ?>
 
 			<?php if ( function_exists( 'sharing_display' ) ): ?>
