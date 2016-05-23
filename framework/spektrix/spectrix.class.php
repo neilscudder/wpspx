@@ -56,9 +56,7 @@ class Spectrix
 
   function post_xml($xml_url,$params)
   {
-    $xml_builder = '<?xml version="1.0" encoding="utf-8"?>
-    <Email>'.SPECTRIX_EMAIL.'</Email>
-    <Password>'.SPECTRIX_PASS.'</Password>';
+    $xml_builder = '<?xml version="1.0" encoding="utf-8"?>';
     $curl = curl_init();
     $options = array(
       CURLOPT_HTTPHEADER => array('Content-Type: text/xml'),
@@ -91,12 +89,14 @@ class Spectrix
         $xml_as_object = simplexml_load_string($xml_string);
         return $xml_as_object;
       } else {
-        throw new Exception('No XML received from Spektrix');
+        throw new Exception('no XML received from Spektrix');
       }
     }
-    catch (Exception $e){
-      echo 'Caught exception: ',  $e->getMessage(), "\n";
-      //$this->redirectAsError();
+    catch (Exception $e){ ?>
+        <div class="notice notice-error">
+          <p>Oops, <?php echo $e->getMessage(); ?>. Double check you settings are correct or <a href="https://pixelpudu.freshdesk.com/">contact us for support</a></p>
+        </div>
+    <?php
     }
   }
 

@@ -5,9 +5,6 @@
 /* Define the custom box */
 add_action('add_meta_boxes','spectrix_record_add_custom_box' );
 
-// backwards compatible (before WP 3.0)
-// add_action( 'admin_init', 'myplugin_add_custom_box', 1 );
-
 /* Do something with the data entered */
 add_action('save_post','wpspx_save_postdata');
 
@@ -47,7 +44,7 @@ function spectrix_record_inner_custom_box( $post ) {
 		}
 		
 		echo '<label for="myplugin_new_field">';
-		_e("Choose from show from Spektrix", 'wpspx' );
+		_e("Choose a show from Spektrix", 'wpspx' );
 		echo '</label> ';
 
 		echo '<select id="myplugin_new_field" name="spectrix_data" class="advanced-selectbox">';
