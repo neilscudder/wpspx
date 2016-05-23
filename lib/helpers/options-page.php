@@ -6,7 +6,7 @@ function wpspx_settings_menu() {
 	add_options_page(
 		'WPWPX',
 		'WPWPX',
-		'manage_options',
+		'edit_posts',
 		'wpspx-settings',
 		'wpspx_settings'
 	);
@@ -15,18 +15,20 @@ function wpspx_settings_menu() {
 	add_action( 'admin_init', 'register_wpspx_settings' );
 }
 
-// Modify capability
-function wpspx_capability( $capability ) {
-    return 'edit_others_posts';
-}
-add_filter( 'option_page_capability_wpspx-settings-group', 'wpspx_capability' );
-
 // register settings
 function register_wpspx_settings() {
 	register_setting( 'wpspx-settings-group', 'wpspx_account' );
 	register_setting( 'wpspx-settings-group', 'wpspx_api' );
 	register_setting( 'wpspx-settings-group', 'wpspx_crt' );
 	register_setting( 'wpspx-settings-group', 'wpspx_key' );
+}
+
+if ( function_exists( 'members_get_capabilities' ) )
+	add_filter( 'members_get_capabilities', 'plugin_name_extra_caps' );
+
+function plugin_name_extra_caps( $caps ) {
+	$caps[] = 'edit_my_plugin_settings';
+	return $caps;
 }
 
 // Settings Page
