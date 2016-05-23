@@ -84,7 +84,7 @@ function wpspx_settings() {
 			<h3>Support</h3>
 			<hr>
 			<p>For support, please submit a support ticket via the helpdesk or send an email to support@pixelpudu.com.</p>
-			<a class="wpspx-button" id="reqsupport" href="https://pixelpudu.freshdesk.com/">Request Support</a>
+			<a class="wpspx-button" id="reqsupport" href="https://pixelpudu.com/submit-ticket/">Request Support</a>
 		</div>
 
 		<div class="col col-50">
