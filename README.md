@@ -26,8 +26,8 @@ Getting Started / Installation
 
 CONTRITUTORS
 
-[Martin Greenwod (PixelPudu)](https://github.com/pixelpudu/)
-[Chris Waters)](https://github.com/christhesoulu/)
+- [Martin Greenwod (PixelPudu)](https://github.com/pixelpudu/)
+- [Chris Waters](https://github.com/christhesoulu/)
 
 LICENCE
 -------
