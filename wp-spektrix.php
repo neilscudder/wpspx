@@ -19,6 +19,9 @@ if (defined('WPSPX')) {
 	define( 'WPSPX', true) ;
 	define( 'WPPSX_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 	define( 'WPPSX_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+	register_activation_hook(__FILE__,'wpspx_install'); 
+	register_deactivation_hook( __FILE__, 'wpspx_remove' );
 	
 	// load config settings
 	require WPPSX_PLUGIN_DIR . 'config.php';
@@ -27,7 +30,6 @@ if (defined('WPSPX')) {
 	define( 'SPECTRIX_URL', 'https://api.system.spektrix.com/'.SPECTRIX_USER.'/api/v2/');
 	define( 'SPECTRIX_WEB_URL', 'https://system.spektrix.com/'.SPECTRIX_USER.'/website/secure/');
 	define( 'THEME_SLUG', wp_get_theme()->get( 'Name' ));
-
 
 	// load plugin settings
 	require WPPSX_PLUGIN_DIR . 'settings.php';

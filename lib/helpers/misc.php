@@ -12,9 +12,9 @@ add_image_size( 'poster', 320, 474, true );
 
 add_filter('query_vars', 'add_my_var');
 function add_my_var($public_query_vars) {
-    $public_query_vars[] = 'performance';
-    $public_query_vars[] = 'lid';
-    return $public_query_vars;
+	$public_query_vars[] = 'performance';
+	$public_query_vars[] = 'lid';
+	return $public_query_vars;
 }
 
 /*==================================
@@ -69,18 +69,18 @@ function catch_that_image() {
 ======================================*/
 
 function wpspk_bust_cache() {
-    $cached_files = WPPSX_PLUGIN_DIR . 'cache/*.txt';
+	$cached_files = WPPSX_PLUGIN_DIR . 'cache/*.txt';
 
-    try {
-        array_map('unlink', glob($cached_files)); ?>
-        <div class="notice notice-success is-dismissible">
-            <p><?php _e( 'KaPow! Spektrix cache has been Busted.!', 'wpspx' ); ?></p>
-        </div>
-    <?php } catch (Exception $e) { ?>
-        <div class="notice notice-success is-dismissible">
-            <p>Oops... <?php echo  $e->getMessage() . '\n'; ?></p>
-        </div>
-    <?php }
+	try {
+		array_map('unlink', glob($cached_files)); ?>
+		<div class="notice notice-success is-dismissible">
+			<p><?php _e( 'KaPow! Spektrix cache has been Busted.!', 'wpspx' ); ?></p>
+		</div>
+	<?php } catch (Exception $e) { ?>
+		<div class="notice notice-success is-dismissible">
+			<p>Oops... <?php echo  $e->getMessage() . '\n'; ?></p>
+		</div>
+	<?php }
 }
 
 /*=====================================================
@@ -125,24 +125,24 @@ function format_performances_attributes($attributes) {
   $performance_attributes = load_performance_attributes();
   $aps = $performance_attributes;
   foreach($aps as $ap => $ap_details):
-    if(in_array($ap,$attributes)):
-      if(in_array($ap,$accessible_performances)):
-        $string.= '<a href="'.home_url('/access/#accessible-performances').'">';
-      endif;
-      $string.= '<img class="accessible_performance" data-trigger="hover" data-animation="true" title="'.$ap_details[0].'" data-content="'.$ap_details[1].'" src="' . $dir . '/img/accessibility/' . str_replace(' ','-',strtolower($ap)) . '.png" style="margin-right:10px;"></a>';
-      if(in_array($ap,array('CAP','AD','BSL','REL'))):
-        $string.= '</a>';
-      endif;
-      if(($key = array_search($ap, $attributes)) !== false) {
-        unset($attributes[$key]);
-      }
-    endif;
+	if(in_array($ap,$attributes)):
+	  if(in_array($ap,$accessible_performances)):
+		$string.= '<a href="'.home_url('/access/#accessible-performances').'">';
+	  endif;
+	  $string.= '<img class="accessible_performance" data-trigger="hover" data-animation="true" title="'.$ap_details[0].'" data-content="'.$ap_details[1].'" src="' . $dir . '/img/accessibility/' . str_replace(' ','-',strtolower($ap)) . '.png" style="margin-right:10px;"></a>';
+	  if(in_array($ap,array('CAP','AD','BSL','REL'))):
+		$string.= '</a>';
+	  endif;
+	  if(($key = array_search($ap, $attributes)) !== false) {
+		unset($attributes[$key]);
+	  }
+	endif;
   endforeach;
 
   //show other attributes in a list
   $string .= '<div style="margin-top:10px;">';
   foreach($attributes as $attr):
-    $string .= '<span class="label label-info">'.$attr.'</span>';
+	$string .= '<span class="label label-info">'.$attr.'</span>';
   endforeach;
   $string .= '</div>';
 
@@ -187,10 +187,10 @@ function convert_to_seconds($minutes){
 
 function iframe_shortcode($atts,$content = null){
   extract(shortcode_atts(
-    array(
-      'secure' => false,
-    ),
-    $atts
+	array(
+	  'secure' => false,
+	),
+	$atts
   ));
   $spektrix_iframe_url = new iFrame($content,NULL,$secure);
   return $spektrix_iframe_url->render_iframe();
@@ -206,25 +206,25 @@ function wpspx_ssl_template_redirect() {
   $secure_pages = array('checkout','your-account');
 
   if(!defined('WP_LOCAL_DEV')) {
-    if (is_page($secure_pages) && !is_ssl() ) {
-      if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
-        wp_redirect(preg_replace('|^http://|', 'https://', $_SERVER['REQUEST_URI']), 301 );
-        exit();
-      } else {
-        wp_redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], 301 );
-        exit();
-      }
-    } else if (!is_page($secure_pages) && is_ssl() && !is_admin()) {
-      if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
-        wp_redirect(preg_replace('|^https://|', 'http://', $_SERVER['REQUEST_URI']), 301 );
-        exit();
-      } else if (is_page($blank_page)) {
-        exit();
-      } else {
-        wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], 301 );
-        exit();
-      }
-    }
+	if (is_page($secure_pages) && !is_ssl() ) {
+	  if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
+		wp_redirect(preg_replace('|^http://|', 'https://', $_SERVER['REQUEST_URI']), 301 );
+		exit();
+	  } else {
+		wp_redirect('https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], 301 );
+		exit();
+	  }
+	} else if (!is_page($secure_pages) && is_ssl() && !is_admin()) {
+	  if ( 0 === strpos($_SERVER['REQUEST_URI'], 'http') ) {
+		wp_redirect(preg_replace('|^https://|', 'http://', $_SERVER['REQUEST_URI']), 301 );
+		exit();
+	  } else if (is_page($blank_page)) {
+		exit();
+	  } else {
+		wp_redirect('http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], 301 );
+		exit();
+	  }
+	}
   }
 }
 // uncomment if younwant to redirect to SSL
@@ -273,8 +273,8 @@ function fixed_img_caption_shortcode($attr, $content = null) {
 
 //Adding the dwg mime type for tech specs
 function my_myme_types($mime_types){
-    $mime_types['dwg'] = 'image/x-dwg';
-    return $mime_types;
+	$mime_types['dwg'] = 'image/x-dwg';
+	return $mime_types;
 }
 add_filter('upload_mimes', 'my_myme_types', 1, 1);
 
@@ -287,7 +287,7 @@ add_action( 'wp', 'show_page_cookie' );
 function show_page_cookie() {
   // Set cookie
   if (is_singular('shows')) {
-    setcookie("wordpress_show", "mis", time()+31536000);
+	setcookie("wordpress_show", "mis", time()+31536000);
   }
 }
 
@@ -298,11 +298,11 @@ function show_page_cookie() {
 // Removes Jetpack sharing in favour of putting where we'd likev
 add_action( 'loop_start', 'jptweak_remove_share' );
 function jptweak_remove_share() {
-    remove_filter( 'the_content', 'sharing_display',19 );
-    remove_filter( 'the_excerpt', 'sharing_display',19 );
-    if ( class_exists( 'Jetpack_Likes' ) ) {
-        remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
-    }
+	remove_filter( 'the_content', 'sharing_display',19 );
+	remove_filter( 'the_excerpt', 'sharing_display',19 );
+	if ( class_exists( 'Jetpack_Likes' ) ) {
+		remove_filter( 'the_content', array( Jetpack_Likes::init(), 'post_likes' ), 30, 1 );
+	}
 }
 
 /*========================================
@@ -316,9 +316,82 @@ function jptweak_remove_share() {
 function get_id_by_slug($page_slug) {
   $page = get_page_by_path($page_slug);
   if ($page) {
-    return $page->ID;
+	return $page->ID;
   } else {
-    return null;
+	return null;
   }
 }
 
+
+
+/*==============================================
+=            Create Required Pages            =
+==============================================*/
+
+$wpspx_pages = array(
+	$basket = array(
+		'Basket',
+		'basket',
+		'[basket]',
+	),
+	$checkout = array(
+		'Checkout',
+		'checkout',
+		'[checkout]',
+	),
+);
+
+function wpspx_install() {
+	
+	global $wpdb;
+		
+	foreach($wpspx_pages as $wpspx_page){
+		$wpspx_page_title 		= $wpspx_page[0];
+		$wpspx_page_name 		= $wpspx_page[1];
+		$wpspx_page_content 	= $wpspx_page[2];
+
+		$the_page = get_page_by_title( $wpspx_page_title );
+
+		if ( ! $the_page ) {
+
+			// Create post object
+			$_p = array();
+			$_p['post_title'] = $wpspx_page_title;
+			$_p['post_content'] = $wpspx_page_content;
+			$_p['post_status'] = 'publish';
+			$_p['post_type'] = 'page';
+			$_p['comment_status'] = 'closed';
+			$_p['ping_status'] = 'closed';
+			$_p['post_category'] = array(1); // the default 'Uncatrgorised'
+
+			// Insert the post into the database
+			$wpspx_page_id = wp_insert_post( $_p );
+
+		}
+		else {
+			// the plugin may have been previously active and the page may just be trashed...
+			$wpspx_page_id = $the_page->ID;
+
+			//make sure the page is not trashed...
+			$the_page->post_status = 'publish';
+			$wpspx_page_id = wp_update_post( $the_page );
+		}
+	}
+}
+
+function wpspx_remove() {
+
+	global $wpdb;
+
+	foreach($wpspx_pages as $wpspx_page){
+		$wpspx_page_title 	= $wpspx_page[0];
+		$wpspx_page_name 	= $wpspx_page[1];
+
+		$the_page = get_page_by_title( $wpspx_page_title );
+
+		if ( $the_page ) {
+			$wpspx_page_id = $the_page->ID;
+			wp_delete_post( $wpspx_page_id ); // this will trash, not delete
+		}
+	}
+}
