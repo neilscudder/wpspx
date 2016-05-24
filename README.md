@@ -33,5 +33,4 @@ Contributors
 LICENCE
 -------
 
-The MIT License (MIT). Please see [License File](https://github.com/pixelpudu/wpspx/LICENCE) for more information.
-
+GPL v2 or later
