@@ -1,7 +1,7 @@
 WPSPX
 =====
 
-A plugin for WordPress that intergrates with Spektrix API V2.
+A plugin for WordPress that integrates with Spektrix API V2.
 
 Donations
 ---------
@@ -16,15 +16,15 @@ You will need a few things before you can start using this plugin.
 - Spektrix API key
 - Valid Spektrix .crt file
 - Valid Spektrix .key file
-- The API URL endpoint for your custome account
+- The API URL endpoint for your customer account
 
 Getting Started / Installation
 ------------------------------
 
-- Upload wpspx to the /wp-content/plugins/ directory
-- Upload you Signed SSL certificates from Spektrix to the server outside of the root folder (eg: before public_html)
+- Upload WPSPX to the /wp-content/plugins/ directory
+- Upload your Signed SSL certificates from Spektrix to the server outside of the root folder (eg: before public_html)
 - Activate the plugin through the 'Plugins' menu in WordPress
-- Visit the settings page under Settings > wpspx
+- Visit the settings page under Settings > WPSPX
 - Enter your API Key, account name (endpoint), and the path to your signed Spektrix certificates.
 - Add your first show
 - Check the [Wiki](https://github.com/pixelpudu/wpspx/wiki) for further information and some documentation
@@ -32,7 +32,7 @@ Getting Started / Installation
 Contributors
 ------------
 
-- [Martin Greenwod (PixelPudu)](https://github.com/pixelpudu/)
+- [Martin Greenwood (PixelPudu)](https://github.com/pixelpudu/)
 - [Chris Waters](https://github.com/christhesoulu/)
 
 LICENCE

@@ -21,23 +21,23 @@ This plugin allows you to quickly integrate your Spektrix API data into your Wor
 - Display a list of all upcoming shows
 - Display shows for the next week / six weeks
 - Display a list of matinee shows
-- Display the spektrix Basket, checkout and my account (We reccommend aquiring a SSL Certificate)
+- Display the Spektrix basket, checkout and my account (We recommend acquiring a SSL Certificate)
 
-== Frequestnly Asked Questions ==
+== Frequently Asked Questions ==
 
-= I have an error when tryig to add a show "Oops, no XML received from Spektrix". = 
+= I have an error when trying to add a show "Oops, no XML received from Spektrix". = 
 Double check your API, account name and CRT/Key locations
 
 = My data is out of date =
-Visit the settings page and delete the cache or do it manuakly my emtying the cache folder withn the plugin folder
+Visit the Settings page and delete the cache or do it manually by emptying the cache folder withn the plugin folder
 
 == Installation ==
 
 - Add via the plugin screen by searching for WPSPX or
-- Upload wpspx to the /wp-content/plugins/ directory
-- Upload you Signed SSL certificates from Spektrix to the server outside of the root folder (eg: before /public_html)
+- Upload WPSPX to the /wp-content/plugins/ directory
+- Upload your Signed SSL certificates from Spektrix to the server outside of the root folder (eg: before /public_html)
 - Activate the plugin through the 'Plugins' menu in WordPress
-- Visit the settings page under Settings > wpspx
+- Visit the settings page under Settings > WPSPX
 - Enter your API Key, account name, and the path to your signed Spektrix certificates.
 - Add your first show
 
