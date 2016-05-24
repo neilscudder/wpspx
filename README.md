@@ -3,11 +3,21 @@ WPSPX
 
 A plugin for WordPRess that intergrates with Spektrix API V2
 
-Getting Started
----------------
+Configuration
+-------------
+
+You will need a few things before you can install
+
+- Spektrix API key
+- Valid Spektrix .crt file
+- Valid Spektrix .key file
+- The API URL endpoint for your custome account
+
+Getting Started / Installation
+------------------------------
 
 - Upload wpspx to the /wp-content/plugins/ directory
-- Upload you Signed SSL certificates from Spektrix to the server outside of the root folder (eg: public_html)
+- Upload you Signed SSL certificates from Spektrix to the server outside of the root folder (eg: before public_html)
 - Activate the plugin through the 'Plugins' menu in WordPress
 - Visit the settings page under Settings > wpspx
 - Enter your API Keys, account name, and the path to your signed Spektrix certificates.
