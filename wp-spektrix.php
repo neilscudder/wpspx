@@ -52,6 +52,7 @@ if (defined('WPSPX')) {
 	    $mylinks = array(
 	        '<a href="' . admin_url( 'options-general.php?page=wpspx-settings' ) . '">Settings</a>',
 	        '<a target="_blank" href="https://pixelpudu.com/submit-ticket/">Support</a>',
+	        '<a target="_blank" href="https://paypal.me/martingreenwood">Donate</a>',
 	    );
 	    return array_merge( $links, $mylinks );
 	}
