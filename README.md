@@ -24,7 +24,8 @@ Getting Started / Installation
 - Add your first show
 - Check the [Wiki](https://github.com/pixelpudu/wpspx/wiki) for further information and some documentation
 
-CONTRITUTORS
+Contributors
+------------
 
 - [Martin Greenwod (PixelPudu)](https://github.com/pixelpudu/)
 - [Chris Waters](https://github.com/christhesoulu/)
