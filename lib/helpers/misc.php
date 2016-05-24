@@ -328,70 +328,90 @@ function get_id_by_slug($page_slug) {
 =            Create Required Pages            =
 ==============================================*/
 
-$wpspx_pages = array(
-	$basket = array(
-		'Basket',
-		'basket',
-		'[basket]',
-	),
-	$checkout = array(
-		'Checkout',
-		'checkout',
-		'[checkout]',
-	),
-);
+function create_pages() {
 
-function wpspx_install() {
-	
-	global $wpdb;
-		
-	foreach($wpspx_pages as $wpspx_page){
-		$wpspx_page_title 		= $wpspx_page[0];
-		$wpspx_page_name 		= $wpspx_page[1];
-		$wpspx_page_content 	= $wpspx_page[2];
+	$wpspx_pages = array(
+		$basket = array(
+			'Basket',
+			'basket',
+			'[basket]',
+			'0',
+		),
+		$checkout = array(
+			'Checkout',
+			'checkout',
+			'[checkout]',
+			'0',
+		),
+		$myaccount = array(
+			'My Account',
+			'my-account',
+			'[my_account]',
+			'0',
+		),
+		$myaccount = array(
+			'Book Online',
+			'book-online',
+			'[book_online]',
+			'0',
+		),
+	);
 
-		$the_page = get_page_by_title( $wpspx_page_title );
-
-		if ( ! $the_page ) {
-
-			// Create post object
-			$_p = array();
-			$_p['post_title'] = $wpspx_page_title;
-			$_p['post_content'] = $wpspx_page_content;
-			$_p['post_status'] = 'publish';
-			$_p['post_type'] = 'page';
-			$_p['comment_status'] = 'closed';
-			$_p['ping_status'] = 'closed';
-			$_p['post_category'] = array(1); // the default 'Uncatrgorised'
-
-			// Insert the post into the database
-			$wpspx_page_id = wp_insert_post( $_p );
-
-		}
-		else {
-			// the plugin may have been previously active and the page may just be trashed...
-			$wpspx_page_id = $the_page->ID;
-
-			//make sure the page is not trashed...
-			$the_page->post_status = 'publish';
-			$wpspx_page_id = wp_update_post( $the_page );
-		}
+	foreach ( $wpspx_pages as $wpspx_page ) {
+		wpspx_create_page ( 
+			$wpspx_page[0], 
+			$wpspx_page[1], 
+			$wpspx_page[2]
+		);
 	}
 }
 
-function wpspx_remove() {
-
+function wpspx_create_page($page_title = '', $slug, $page_content = '', $post_parent = 0 ) {
 	global $wpdb;
 
-	foreach($wpspx_pages as $wpspx_page){
-		$wpspx_page_title 	= $wpspx_page[0];
-		$wpspx_page_name 	= $wpspx_page[1];
-
-		$the_page = get_page_by_title( $wpspx_page_title );
-
-		if ( $the_page ) {
-			$wpspx_page_id = $the_page->ID;
-			wp_delete_post( $wpspx_page_id ); // this will trash, not delete
-		}
+	if ( strlen( $page_content ) > 0 ) {
+		// Search for an existing page with the specified page content (typically a shortcode)
+		$valid_page_found = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status NOT IN ( 'pending', 'trash', 'future', 'auto-draft' ) AND post_content LIKE %s LIMIT 1;", "%{$page_content}%" ) );
+	} else {
+		// Search for an existing page with the specified page slug
+		$valid_page_found = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status NOT IN ( 'pending', 'trash', 'future', 'auto-draft' )  AND post_name = %s LIMIT 1;", $slug ) );
 	}
+
+	$valid_page_found = apply_filters( 'wpspx_create_page_id', $valid_page_found, $slug, $page_content );
+
+	if ( $valid_page_found ) {
+		return $valid_page_found;
+	}
+
+	// Search for a matching valid trashed page
+	if ( strlen( $page_content ) > 0 ) {
+		// Search for an existing page with the specified page content (typically a shortcode)
+		$trashed_page_found = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status = 'trash' AND post_content LIKE %s LIMIT 1;", "%{$page_content}%" ) );
+	} else {
+		// Search for an existing page with the specified page slug
+		$trashed_page_found = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM $wpdb->posts WHERE post_type='page' AND post_status = 'trash' AND post_name = %s LIMIT 1;", $slug ) );
+	}
+
+	if ( $trashed_page_found ) {
+		$page_id   = $trashed_page_found;
+		$page_data = array(
+			'ID'             => $page_id,
+			'post_status'    => 'publish',
+		);
+	 	wp_update_post( $page_data );
+	} else {
+		$page_data = array(
+			'post_status'    => 'publish',
+			'post_type'      => 'page',
+			'post_author'    => 1,
+			'post_name'      => $slug,
+			'post_title'     => $page_title,
+			'post_content'   => $page_content,
+			'post_parent'    => $post_parent,
+			'comment_status' => 'closed'
+		);
+		$page_id = wp_insert_post( $page_data );
+	}
+
+	return $page_id;
 }

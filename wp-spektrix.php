@@ -15,13 +15,11 @@
 if (defined('WPSPX')) {
 	 // The plugin was already loaded (maybe as another plugin with different directory name)
 } else {
-
+	register_activation_hook(__FILE__,'create_pages'); 
+	
 	define( 'WPSPX', true) ;
 	define( 'WPPSX_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 	define( 'WPPSX_PLUGIN_URL', plugin_dir_url(__FILE__));
-
-	register_activation_hook(__FILE__,'wpspx_install'); 
-	register_deactivation_hook( __FILE__, 'wpspx_remove' );
 	
 	// load config settings
 	require WPPSX_PLUGIN_DIR . 'config.php';
