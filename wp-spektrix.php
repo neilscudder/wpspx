@@ -2,7 +2,7 @@
 
 /*
  Plugin Name: WPWPX (WordPress & Spektrix)
- Plugin URI: http://pixelpudu.com/
+ Plugin URI: http://pixelpudu.com/wpspx
  Description: A WordPress plugin that intergrates WordPress with Spektrix API V2
  Version: 1.0.0
  Author: Martin Greenwood

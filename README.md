@@ -1,12 +1,17 @@
 WPSPX
 =====
 
-A plugin for WordPress that intergrates with Spektrix API V2
+A plugin for WordPress that intergrates with Spektrix API V2.
+
+Donations
+---------
+
+If you would like to donate to the future development of this plugin you can do so [here](https://www.paypal.me/martingreenwood)
 
 Configuration
 -------------
 
-You will need a few things before you can install
+You will need a few things before you can start using this plugin.
 
 - Spektrix API key
 - Valid Spektrix .crt file
