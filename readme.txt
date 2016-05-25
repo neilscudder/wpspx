@@ -55,6 +55,13 @@ Even though this plugin is completely free, any help with installation or person
 
 == Changelog ==
 
+= 1.0.1 =
+
+Removed CMB2 plugin from human made
+Added custom meta box for poster images
+Added ABSPATH Check
+Added a bunch of empty dir index files
+
 = 1.0.0 =
 
 Initial Release.
