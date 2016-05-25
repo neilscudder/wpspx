@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 // loads shows
 $shows = Show::six_weeks();

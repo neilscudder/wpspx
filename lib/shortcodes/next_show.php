@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 add_shortcode( 'next_show', 'shows_next_show' );
 function shows_next_show() {
 

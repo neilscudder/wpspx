@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 // Menu Item
 add_action( 'admin_menu', 'wpspx_settings_menu' );
@@ -69,7 +69,7 @@ function wpspx_settings() {
 					</tr>
 					<tr valign="top">
 						<th scope="row">Path to Specktrix Key</th>
-						<td><input type="text" name="wpspx_key" value="<?php echo esc_attr( get_option('wpspx_crt') ); ?>" />
+						<td><input type="text" name="wpspx_key" value="<?php echo esc_attr( get_option('wpspx_key') ); ?>" />
 						<small>Enter the path to your Spektrix certicicate key, eg: /var/www/htdocs/fortnox/certificate.key
 						<br>Yuur server path: <?php echo $_SERVER['DOCUMENT_ROOT']; ?></small></td>
 					</tr>

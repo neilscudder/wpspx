@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 // config goes here
 define( 'SPECTRIX_USER', esc_attr( get_option('wpspx_account') ) );

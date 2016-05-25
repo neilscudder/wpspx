@@ -1,5 +1,4 @@
-<?php
-
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 add_shortcode( 'next_six_weeks', 'shows_six_weeks' );
 function shows_six_weeks() {
 

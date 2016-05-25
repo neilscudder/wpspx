@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 add_shortcode( 'basket', 'load_basket' );
 function load_basket() {
 

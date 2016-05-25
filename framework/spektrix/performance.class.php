@@ -1,4 +1,5 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+
 /**
  * Performance Class
  *

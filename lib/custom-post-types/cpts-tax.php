@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 	add_action( 'init', 'create_genre_taxonomy');
 

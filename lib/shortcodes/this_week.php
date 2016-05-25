@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 add_shortcode( 'this_week', 'shows_this_week' );
 function shows_this_week() {

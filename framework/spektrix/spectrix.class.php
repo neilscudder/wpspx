@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 /**
 	* Spectrix is a base class for hitting the API and retrieving data

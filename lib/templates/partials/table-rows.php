@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 $is_sold_out = ($availabilities[$performance->id]->available === 0);
 $av_helper = availability_helper($availabilities[$performance->id],$extremes);
 $tr_class = 'performance ';

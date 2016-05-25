@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 add_shortcode( 'all_upcoming_shows', 'show_all_upcoming_shows' );
 function show_all_upcoming_shows() {

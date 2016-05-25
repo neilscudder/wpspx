@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 add_shortcode( 'checkout', 'load_checkout' );
 function load_checkout() {
 

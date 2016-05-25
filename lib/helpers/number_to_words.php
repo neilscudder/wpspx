@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 function convert_number_to_words($number) {
     
     $hyphen      = '-';

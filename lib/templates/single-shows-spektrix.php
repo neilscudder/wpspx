@@ -1,6 +1,4 @@
-<?php
-// set a cookie to disable cache following wordpress_* logic
-setcookie("wordpress__spektrix_show", "mis", time()+31536000);
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 $show = new Show($spectrix_id);
 

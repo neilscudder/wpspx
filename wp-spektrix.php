@@ -1,4 +1,4 @@
-<?php if ( ! defined( 'ABSPATH' ) ) die( 'Forbidden' );
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 /*
  Plugin Name: WPWPX (WordPress & Spektrix)

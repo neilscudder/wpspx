@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 add_shortcode( 'my_account', 'load_my_account' );
 function load_my_account() {
 

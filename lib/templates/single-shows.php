@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 // load meta ID
 $spectrix_id = get_post_meta($post->ID,'_spectrix_id',true);

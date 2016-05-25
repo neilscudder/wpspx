@@ -1,4 +1,5 @@
-<?php 
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+
 $videos = get_field("videos");
 $images = get_field('show_gallery');
 $cover_image = get_field('cover_image');

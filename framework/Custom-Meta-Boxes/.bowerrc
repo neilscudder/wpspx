@@ -1,6 +1,0 @@
-{
-	"directory": "js/vendor",
-	"scripts": {
-        "postinstall": "rm -rf js/vendor/jquery"
-    }
-}

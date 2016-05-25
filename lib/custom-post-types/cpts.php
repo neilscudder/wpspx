@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 	/* 	
 	Creating a Custom Post Type is blissfully simple ...

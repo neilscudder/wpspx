@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 
 /*================================
@@ -7,9 +7,6 @@
 
 // Include framework bootstrap file
 require WPPSX_PLUGIN_DIR . 'framework/bootstrap.php';
-
-// load human mades custom meta boxes 
-require WPPSX_PLUGIN_DIR . 'framework/Custom-Meta-Boxes/custom-meta-boxes.php';
 
 // Inlude custom post types items
 require WPPSX_PLUGIN_DIR . 'lib/custom-post-types/cpts.php';

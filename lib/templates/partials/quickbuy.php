@@ -1,4 +1,5 @@
-<?php $av_helper = availability_helper($availabilities[$performances[0]->id],$extremes); ?>
+<?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
+$av_helper = availability_helper($availabilities[$performances[0]->id],$extremes); ?>
 <div class="quick-buy">
   <div class="container show-information">
     <div class="row">
