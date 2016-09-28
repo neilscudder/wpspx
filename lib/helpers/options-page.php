@@ -83,8 +83,8 @@ function wpspx_settings() {
 		<div class="col col-50" style="margin-right: 2%;">
 			<h3>Support</h3>
 			<hr>
-			<p>For support, please submit a support ticket via the helpdesk or send an email to support@pixelpudu.com.</p>
-			<a class="wpspx-button" id="reqsupport" href="https://pixelpudu.com/submit-ticket/">Request Support</a>
+			<p>For support, please send an email to martin@pixelpudu.com</p>
+			<a class="wpspx-button" id="reqsupport" href="mailto:martin@pixelpudu.com">Request Support</a>
 		</div>
 
 		<div class="col col-50">
