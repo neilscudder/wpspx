@@ -10,7 +10,7 @@ require WPPSX_PLUGIN_DIR . 'framework/bootstrap.php';
 
 // Inlude custom post types items
 require WPPSX_PLUGIN_DIR . 'lib/custom-post-types/cpts.php';
-require WPPSX_PLUGIN_DIR . 'lib/custom-post-types/cpts-meta.php';
+//require WPPSX_PLUGIN_DIR . 'lib/custom-post-types/cpts-meta.php';
 require WPPSX_PLUGIN_DIR . 'lib/custom-post-types/cpts-tax.php';
 
 // load helpers

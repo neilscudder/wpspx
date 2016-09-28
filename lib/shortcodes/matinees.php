@@ -42,14 +42,13 @@ function shows_matinees() {
 						<h3><small><?php echo $performance->start_time->format('H:i'); ?></small></h3>
 					</td>
 					<td width="20%" valign="top">
-
 						<?php 
-						if(has_post_thumbnail()):
-							the_post_thumbnail('poster');
+						$poster = get_the_post_thumbnail($show_id, 'poster');
+						if($poster):
+							echo $poster;
 						else: ?>
 						<img src="<?php echo WPPSX_PLUGIN_URL; ?>lib/assets/no-image.jpg">
 						<?php endif; ?>
-
 					</td>
 					<td width="30%">
 

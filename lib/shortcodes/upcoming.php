@@ -75,8 +75,9 @@ function show_all_upcoming_shows() {
 					<?php if($is_sold_out): ?><div class="sold-out-container"></div><?php endif; ?>
 					<a href="<?php echo get_permalink($show_id); ?>">
 						<?php 
-						if(has_post_thumbnail()):
-							the_post_thumbnail('poster');
+						$poster = get_the_post_thumbnail($show_id, 'poster');
+						if($poster):
+							echo $poster;
 						else: ?>
 						<img src="<?php echo WPPSX_PLUGIN_URL; ?>lib/assets/no-image.jpg">
 						<?php endif; ?>

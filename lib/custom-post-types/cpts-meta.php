@@ -30,5 +30,5 @@ function wpspx_meta_callback( $post ) {
 
 // Checks for input and saves if needed
 if( isset( $_POST[ 'wpspx-poster-image' ] ) ) {
-    update_post_meta( $post_id, 'wpspx-poster-image', $_POST[ 'wpspx-poster-image' ] );
+    update_post_meta( $post->ID, 'wpspx-poster-image', $_POST[ 'wpspx-poster-image' ] );
 }
