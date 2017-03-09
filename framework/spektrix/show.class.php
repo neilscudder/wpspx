@@ -205,3 +205,18 @@ function is_pulse($show){
   $is_pulse = strpos($show->tags_as_class(),'pulse-festival') !== false;
   return $is_pulse;
 }
+
+function filter_shows_with_genre($all_shows, $genre){
+  $shows = array();
+  $show_terms = array();
+  foreach($all_shows as $show):
+    // if show has a genre that matche
+    $show_terms = get_the_terms($show, 'genres');
+    print_r($show_terms);
+    echo ($show_terms);
+    if($genre):
+      $shows[$show->id] = $show;
+    endif;
+  endforeach;
+  return $shows;
+}

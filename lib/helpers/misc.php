@@ -415,3 +415,54 @@ function wpspx_create_page($page_title = '', $slug, $page_content = '', $post_pa
 
 	return $page_id;
 }
+
+/*=======================================
+=            GENRES FROM SPK            =
+=======================================*/
+
+function wpspx_generate_genre_list_items($shows){
+	$list_items = '';
+	$genres = array();
+	$also = '';
+	foreach($shows as $show){
+		if($show->website_category != '' && !in_array($show->website_category,$genres)){
+			$pos = strpos($show->website_category,'Also selling');
+			if($pos === false){
+				$genres[] = $show->website_category;
+			} else {
+				$also = $show->website_category;
+			}
+		}
+	}
+	array_filter($genres);
+	sort($genres);
+
+	$genres[] = $also;
+
+	foreach($genres as $genre){
+		$list_items.= '<li><a href="'.home_url('/upcoming/'.strtolower(str_replace(' ','-',$genre))).'">'.$genre.'</a></li>';
+	}
+
+	return $list_items;
+}
+
+/*=============================================
+=            OVERRIDE TAX TEMPLATE            =
+=============================================*/
+add_filter('template_include','wpspx_override_tax_template');
+function wpspx_override_tax_template($template){
+    // is a specific custom taxonomy being shown?
+    $taxonomy_array = array('genres');
+    foreach ($taxonomy_array as $taxonomy_single) {
+        if ( is_tax($taxonomy_single) ) {
+            if(file_exists(trailingslashit(get_stylesheet_directory()) . '/taxonomy-'.$taxonomy_single.'.php')) {
+                $template = trailingslashit(get_stylesheet_directory()) . '/taxonomy-'.$taxonomy_single.'.php';
+            }
+            else {
+                $template = WPPSX_PLUGIN_DIR . 'lib/templates/taxonomy-'.$taxonomy_single.'.php';
+            }
+            break;
+        }
+    }
+    return $template;
+}
