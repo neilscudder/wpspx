@@ -55,6 +55,10 @@ Even though this plugin is completely free, any help with installation or person
 
 == Changelog ==
 
+= 1.1.0 =
+
+tba
+
 = 1.0.1 =
 
 Removed CMB2 plugin from human made

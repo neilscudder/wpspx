@@ -1,5 +1,5 @@
-WPSPX
-=====
+WPSPX 1.1.0 alpha
+=================
 
 A plugin for WordPress that integrates with Spektrix API V2.
 
