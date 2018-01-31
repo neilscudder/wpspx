@@ -1,10 +1,10 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 /*
- Plugin Name: WPWPX (WordPress & Spektrix)
+ Plugin Name: WPSPX (WordPress & Spektrix)
  Plugin URI: http://pixelpudu.com/wpspx
  Description: A WordPress plugin that intergrates WordPress with Spektrix API V2
- Version: 1.0.0
+ Version: 1.1.0
  Author: Martin Greenwood
  Author URI: http://www.pixelpudu.com/
  License: GPL2+
