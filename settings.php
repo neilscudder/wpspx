@@ -51,10 +51,10 @@ function wpspx_admin_scripts() {
 add_action( 'wp_enqueue_scripts', 'wpspx_scripts' );
 function wpspx_scripts() {
     wp_register_script(
-        'wpspk-resize', '//system.spektrix.com/'.SPECTRIX_USER.'/website/scripts/resizeiframe.js', '', '', true 
+        'wpspk-resize', '//system.spektrix.com/'.SPEKTRIX_USER.'/website/scripts/resizeiframe.js', '', '', true 
     );
     wp_register_script(
-        'wpspk-viewfromseats','//system.spektrix.com/'.SPECTRIX_USER.'/website/scripts/viewfromseats.js', '', '', true 
+        'wpspk-viewfromseats','//system.spektrix.com/'.SPEKTRIX_USER.'/website/scripts/viewfromseats.js', '', '', true 
     );
     
     wp_enqueue_script( 'wpspk-resize' );

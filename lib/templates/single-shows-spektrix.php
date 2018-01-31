@@ -1,11 +1,11 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-$show = new Show($spectrix_id);
+$show = new Show($spektrix_id);
 
 $performances = $show->get_performances();
 $is_in_future = !is_in_past($performances);
 $pricelists = $show->get_price_lists();
-$api = new Spectrix();
+$api = new Spektrix();
 $availabilities = $api->get_availabilities();
 $extremes = availability_extremes($performances,$availabilities);
 $count = count($performances);

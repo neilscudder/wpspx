@@ -24,7 +24,7 @@ get_header(); ?>
 			$all_performances = Performance::find_all_in_future(true);
 			$all_performances = $fake_performances + $all_performances;
 
-			$api = new Spectrix();
+			$api = new Spektrix();
 			$availabilities = $api->get_availabilities();
 
 			uasort($all_performances, function($a, $b) {

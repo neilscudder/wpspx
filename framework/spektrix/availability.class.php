@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class Availability extends Spectrix
+class Availability extends Spektrix
 {
   public $available;
   public $capacity;

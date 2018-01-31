@@ -4,7 +4,7 @@ function shows_six_weeks() {
 
 	require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader-sixweeks.php';
 
-	$api = new Spectrix();
+	$api = new Spektrix();
 	$performances = Performance::six_weeks();
 	$availabilities = $api->get_availabilities();
 

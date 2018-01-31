@@ -39,8 +39,8 @@ if (defined('WPSPX')) {
 	require WPPSX_PLUGIN_DIR . 'config.php';
 
 	//  define loaded and local plugin dir
-	define( 'SPECTRIX_URL', 'https://api.system.spektrix.com/'.SPECTRIX_USER.'/api/v2/');
-	define( 'SPECTRIX_WEB_URL', 'https://system.spektrix.com/'.SPECTRIX_USER.'/website/secure/');
+	define( 'SPEKTRIX_URL', 'https://api.system.spektrix.com/'.SPEKTRIX_USER.'/api/v2/');
+	define( 'SPEKTRIX_WEB_URL', 'https://system.spektrix.com/'.SPEKTRIX_USER.'/website/secure/');
 	define( 'THEME_SLUG', wp_get_theme()->get( 'Name' ));
 
 	// load plugin settings

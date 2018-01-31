@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class Plan extends Spectrix
+class Plan extends Spektrix
 {
   public $id;
   public $name;

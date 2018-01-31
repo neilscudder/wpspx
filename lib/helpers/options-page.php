@@ -40,7 +40,7 @@ function wpspx_settings() {
 	
 	<div class="wrap wpspx-settings">
 		<div class="col col-100">
-			<img src="<?php echo plugins_url( '../assets/logo.svg', __FILE__ ) ?>" class="wpspx-logo" width="280" alt="WP Spectrix">
+			<img src="<?php echo plugins_url( '../assets/logo.svg', __FILE__ ) ?>" class="wpspx-logo" width="280" alt="WP Spektrix">
 		</div>
 
 		<div class="col col-100">
