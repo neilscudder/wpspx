@@ -37,7 +37,7 @@ function shows_this_week() {
 					</td>
 					<td width="20%" valign="top">
 						<?php 
-						$poster = get_the_post_thumbnail($show_id, 'poster');
+						$poster = get_the_post_thumbnail($performance->show_id, 'poster');
 						if($poster):
 							echo $poster;
 						else: ?>
