@@ -1,24 +1,24 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 /**
-	* Spectrix is a base class for hitting the API and retrieving data
+	* Spektrix is a base class for hitting the API and retrieving data
 	*/
 
-class Spectrix
+class Spektrix
 {
 
-  private static $api_key = SPECTRIX_API;
-  private static $api_url = SPECTRIX_URL;
+  private static $api_key = SPEKTRIX_API;
+  private static $api_url = SPEKTRIX_URL;
   protected $wp_theme = THEME_SLUG;
 
   public static function get_path_to_cert()
   {
-    return SPECTRIX_CERT;
+    return SPEKTRIX_CERT;
   }
 
   public static function get_path_to_key()
   {
-    return SPECTRIX_KEY;
+    return SPEKTRIX_KEY;
   }
 
   function build_url($resource,$params = array())

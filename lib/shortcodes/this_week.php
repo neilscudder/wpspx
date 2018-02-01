@@ -5,7 +5,7 @@ function shows_this_week() {
 
 	require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader-thisweek.php';
 
-	$api = new Spectrix();
+	$api = new Spektrix();
 	$performances = Performance::this_week();
 	$availabilities = $api->get_availabilities();
 

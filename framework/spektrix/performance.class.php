@@ -3,11 +3,11 @@
 /**
  * Performance Class
  *
- * A performance is an Instance is Spectrix
+ * A performance is an Instance is Spektrix
  * From their API:
  * "An instance represents an occurrence of an event and contains the Start time, Duration and status of that occurrence of the event. It references the price list and plan that are being used at that time."
  */
-class Performance extends Spectrix
+class Performance extends Spektrix
 {
   public $id;
   public $start_time;
@@ -59,14 +59,14 @@ class Performance extends Spectrix
   
   static function find_all()
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $performances = $api->get_performances();
     return $api->collect_performances($performances);
   }
   
   static function find_all_in_future($by_show = false)
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $eternity = time() + (60 * 60 * 24 * 7 * 500);
     $performances = $api->get_performances_until($eternity);
     if($by_show) {
@@ -78,7 +78,7 @@ class Performance extends Spectrix
   
   static function this_week()
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $next_week = time() + (60 * 60 * 24 * 7);
     $performances = $api->get_performances_until($next_week);
     return $api->collect_performances($performances);
@@ -86,7 +86,7 @@ class Performance extends Spectrix
   
   static function six_weeks()
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $six_weeks = time() + (60 * 60 * 24 * 7 * 6);
     $performances = $api->get_performances_until($six_weeks);
     return $api->collect_performances($performances);

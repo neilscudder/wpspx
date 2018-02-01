@@ -4,8 +4,8 @@
 add_action( 'admin_menu', 'wpspx_settings_menu' );
 function wpspx_settings_menu() {
 	add_options_page(
-		'WPWPX',
-		'WPWPX',
+		'WPSPX',
+		'WPSPX',
 		'edit_posts',
 		'wpspx-settings',
 		'wpspx_settings'
@@ -40,12 +40,12 @@ function wpspx_settings() {
 	
 	<div class="wrap wpspx-settings">
 		<div class="col col-100">
-			<img src="<?php echo plugins_url( '../assets/logo.svg', __FILE__ ) ?>" class="wpspx-logo" width="280" alt="WP Spectrix">
+			<img src="<?php echo plugins_url( '../assets/logo.svg', __FILE__ ) ?>" class="wpspx-logo" width="280" alt="WP Spektrix">
 		</div>
 
 		<div class="col col-100">
 			<h3>Getting Started</h3>
-			<p>The <strong>WPWPX</strong> plugin allows you to display your bookable spektrix performaces &amp; Instances dirently on your website. Once you have filled in the below setting, <a href="post-new.php?post_type=shows">create a show</a> and assign your spextrix performance.</p>
+			<p>The <strong>WPSPX</strong> plugin allows you to display your bookable spektrix performaces &amp; Instances dirently on your website. Once you have filled in the below setting, <a href="post-new.php?post_type=shows">create a show</a> and assign your spextrix performance.</p>
 			<hr>
 			<form method="post" action="options.php">
 				<?php settings_fields( 'wpspx-settings-group' ); ?>

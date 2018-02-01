@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class CachedFile extends Spectrix {
+class CachedFile extends Spektrix {
   
   public $file_name;
   public $full_path_to_file;

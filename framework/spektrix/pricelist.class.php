@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-class PriceList extends Spectrix
+class PriceList extends Spektrix
 {
   public $id;
   public $prices;
@@ -9,7 +9,7 @@ class PriceList extends Spectrix
   {
     $this->id = (string) $pl->attributes()->id;
     
-    $api = new Spectrix();
+    $api = new Spektrix();
     $bands = $api->get_bands();
     $ticket_types = $api->get_ticket_types();
     
@@ -19,7 +19,7 @@ class PriceList extends Spectrix
   }
 }
 
-class Price extends Spectrix
+class Price extends Spektrix
 {
   private $band_id;
   private $band_default;
@@ -44,7 +44,7 @@ class Price extends Spectrix
   }
 }
 
-class Band extends Spectrix
+class Band extends Spektrix
 {
   private $id;
   public $name;
@@ -59,7 +59,7 @@ class Band extends Spectrix
   }
 }
 
-class TicketType extends Spectrix
+class TicketType extends Spektrix
 {
   private $id;
   public $name;

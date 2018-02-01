@@ -1,7 +1,7 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
 	$classnames = array(
-		'spectrix',
+		'spektrix',
 		'iframe',
 		'cachedfile',
 		'show',

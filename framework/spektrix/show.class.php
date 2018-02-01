@@ -3,11 +3,11 @@
 /**
  * This is the Show class.
  *
- * A Show is an Event in Spectrix
+ * A Show is an Event in Spektrix
  * From their API docs:
  * "An event in Spektrix can be thought of as a ‘show’. It encapsulates the descriptive data about an event, such as its Name and Description. It is a container for instances."
  */
-class Show extends Spectrix
+class Show extends Spektrix
 { 
   public $id;
   public $name;
@@ -77,14 +77,14 @@ class Show extends Spectrix
   
   static function find_all()
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $shows = $api->get_events();
     return $api->collect_shows($shows);
   }
   
   static function find_all_in_future()
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $eternity = time() + (60 * 60 * 24 * 7 * 500);
     $shows = $api->get_shows_until($eternity);
     return $api->collect_shows($shows);
@@ -92,7 +92,7 @@ class Show extends Spectrix
   
   static function this_week()
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $next_week = time() + (60 * 60 * 24 * 7);
     $shows = $api->get_shows_until($next_week);
     return $api->collect_shows($shows);
@@ -100,7 +100,7 @@ class Show extends Spectrix
   
   static function six_weeks()
   {
-    $api = new Spectrix();
+    $api = new Spektrix();
     $six_weeks = time() + (60 * 60 * 24 * 7 * 6);
     $shows = $api->get_shows_until($six_weeks);
     return $api->collect_shows($shows);
@@ -153,7 +153,7 @@ function get_wp_shows_from_spektrix_shows($shows) {
      'posts_per_page' => -1,
      'meta_query' => array(
         array(
-           'key'     => '_spectrix_id',
+           'key'     => '_spektrix_id',
            'value'   => $show_ids,
            'compare' => 'IN'
         )
@@ -162,8 +162,8 @@ function get_wp_shows_from_spektrix_shows($shows) {
 
   $wp_shows = array();
   foreach($db_shows as $db_show):
-    $spectrix_id = get_post_meta($db_show->ID,'_spectrix_id',true);
-    $wp_shows[$spectrix_id] = $db_show->ID;
+    $spektrix_id = get_post_meta($db_show->ID,'_spektrix_id',true);
+    $wp_shows[$spektrix_id] = $db_show->ID;
   endforeach;
   
   return $wp_shows;

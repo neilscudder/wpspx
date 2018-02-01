@@ -4,7 +4,7 @@ function shows_next_show() {
 
 	//require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader-sixweeks.php';
 
-	$api = new Spectrix();
+	$api = new Spektrix();
 	$performances = Performance::six_weeks();
 	$shows = Show::six_weeks();
 	$show_ids = convert_to_array_of_ids($shows);
@@ -21,7 +21,7 @@ function shows_next_show() {
 		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
-				'key'     => '_spectrix_id',
+				'key'     => '_spektrix_id',
 				'value'   => $show_ids,
 				'compare' => 'IN'
 			)
@@ -30,8 +30,8 @@ function shows_next_show() {
 
 	$wp_shows = array();
 	foreach($db_shows as $db_show):
-		$spectrix_id = get_post_meta($db_show->ID,'_spectrix_id',true);
-		$wp_shows[$spectrix_id] = $db_show->ID;
+		$spektrix_id = get_post_meta($db_show->ID,'_spektrix_id',true);
+		$wp_shows[$spektrix_id] = $db_show->ID;
 	endforeach;
 
 	foreach($performances as $i => $performance):
