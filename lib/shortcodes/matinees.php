@@ -1,5 +1,5 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-add_shortcode( 'manitees', 'shows_matinees' );
+add_shortcode( 'matinees', 'shows_matinees' );
 function shows_matinees() {
 
 	$api = new Spektrix();
