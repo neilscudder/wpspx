@@ -358,9 +358,9 @@ function create_pages() {
 	);
 
 	foreach ( $wpspx_pages as $wpspx_page ) {
-		wpspx_create_page ( 
-			$wpspx_page[0], 
-			$wpspx_page[1], 
+		wpspx_create_page (
+			$wpspx_page[0],
+			$wpspx_page[1],
 			$wpspx_page[2]
 		);
 	}
@@ -444,25 +444,4 @@ function wpspx_generate_genre_list_items($shows){
 	}
 
 	return $list_items;
-}
-
-/*=============================================
-=            OVERRIDE TAX TEMPLATE            =
-=============================================*/
-add_filter('template_include','wpspx_override_tax_template');
-function wpspx_override_tax_template($template){
-    // is a specific custom taxonomy being shown?
-    $taxonomy_array = array('genres');
-    foreach ($taxonomy_array as $taxonomy_single) {
-        if ( is_tax($taxonomy_single) ) {
-            if(file_exists(trailingslashit(get_stylesheet_directory()) . '/taxonomy-'.$taxonomy_single.'.php')) {
-                $template = trailingslashit(get_stylesheet_directory()) . '/taxonomy-'.$taxonomy_single.'.php';
-            }
-            else {
-                $template = WPPSX_PLUGIN_DIR . 'lib/templates/taxonomy-'.$taxonomy_single.'.php';
-            }
-            break;
-        }
-    }
-    return $template;
 }

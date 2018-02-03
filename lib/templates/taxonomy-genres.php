@@ -57,7 +57,7 @@ get_header(); ?>
 				<div class="row">
 					<div class="show-filter span12">
 						<h4>Genre</h4>
-						
+
 						<hr>
 
 						<ul class="nav nav-pills show-filter" style="margin-bottom:5px;">
@@ -74,7 +74,7 @@ get_header(); ?>
 
 					<h2 id="<?php echo strtolower(str_replace(' ','-',$month)) ?>" class="month"><?php echo $month ?></h2>
 					<div class="row">
-					<?php 
+					<?php
 						$i = 0;foreach($shows as $show) {
 						$performances = $show[1];
 						$show = $show[0];
@@ -90,13 +90,13 @@ get_header(); ?>
 						endforeach;
 						if(array_sum($number_tikets) === 0) {
 							$is_sold_out = true;
-						} 
+						}
 						?>
-						<div data-tickets-left="<?php echo array_sum($number_tikets); ?>" 
+						<div data-tickets-left="<?php echo array_sum($number_tikets); ?>"
 							class="span2 show <?php echo $show->website_category; ?> <?php if($is_sold_out): ?>sold-out<?php endif; ?>">
 							<?php if($is_sold_out): ?><div class="sold-out-container"></div><?php endif; ?>
 							<a href="<?php echo get_permalink($show_id); ?>">
-								<?php 
+								<?php
 								$poster = get_the_post_thumbnail($show_id, 'poster');
 								if($poster):
 									echo $poster;
@@ -107,14 +107,14 @@ get_header(); ?>
 							<div class="info">
 								<h5><a href="<?php echo get_permalink($show_id); ?>"><?php echo $show->name ?></a></h5>
 								<p><?php echo $performances; ?></p>
-		
+
 								<ul class="genres">
 									<?php
 									$show_terms = get_the_terms($show_id, 'genres');
 									foreach ($show_terms as $show_term): ?>
 										<li><?php echo $show_term->name; ?></li>
-									<?php 
-									endforeach; 
+									<?php
+									endforeach;
 									?>
 								</ul>
 
