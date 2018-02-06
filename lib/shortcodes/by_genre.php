@@ -1,7 +1,7 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-add_shortcode( 'by_genre', 'shows_by_genre' );
-function shows_by_genre() {
+add_shortcode( 'spektrix_by_genre', 'spektrix_shows_by_genre' );
+function spektrix_shows_by_genre() {
 
 	require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader.php';
 
@@ -41,7 +41,7 @@ function shows_by_genre() {
 		<div class="row">
 			<div class="show-filter span12">
 				<h4>Genre</h4>
-				
+
 				<hr>
 
 				<ul class="nav nav-pills show-filter" style="margin-bottom:5px;">
@@ -58,7 +58,7 @@ function shows_by_genre() {
 
 			<h2 id="<?php echo strtolower(str_replace(' ','-',$month)) ?>" class="month"><?php echo $month ?></h2>
 			<div class="row">
-			<?php 
+			<?php
 				$i = 0;foreach($shows as $show) {
 				$performances = $show[1];
 				$show = $show[0];
@@ -66,21 +66,21 @@ function shows_by_genre() {
 				$is_sold_out = false;
 
 				$this_show_performances = $show->get_performances();
-				$now = new DateTime(); $number_tikets = array();
+				$now = new DateTime(); $number_tickets = array();
 				foreach($this_show_performances as $this_show_performance):
 					if($this_show_performance->start_time > $now):
-						$number_tikets[] = $availabilities[$this_show_performance->id]->available;
+						$number_tickets[] = $availabilities[$this_show_performance->id]->available;
 					endif;
 				endforeach;
-				if(array_sum($number_tikets) === 0) {
+				if(array_sum($number_tickets) === 0) {
 					$is_sold_out = true;
-				} 
+				}
 				?>
-				<div data-tickets-left="<?php echo array_sum($number_tikets); ?>" 
+				<div data-tickets-left="<?php echo array_sum($number_tickets); ?>"
 					class="span2 show <?php echo $show->website_category; ?> <?php if($is_sold_out): ?>sold-out<?php endif; ?>">
 					<?php if($is_sold_out): ?><div class="sold-out-container"></div><?php endif; ?>
 					<a href="<?php echo get_permalink($show_id); ?>">
-						<?php 
+						<?php
 						$poster = get_the_post_thumbnail($show_id, 'poster');
 						if($poster):
 							echo $poster;
@@ -100,5 +100,5 @@ function shows_by_genre() {
 
 	</section>
 
-	<?php 
+	<?php
 }

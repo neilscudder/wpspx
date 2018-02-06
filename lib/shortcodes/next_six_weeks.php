@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-add_shortcode( 'next_six_weeks', 'shows_six_weeks' );
-function shows_six_weeks() {
+add_shortcode( 'spektrix_next_six_weeks', 'spektrix_shows_six_weeks' );
+function spektrix_shows_six_weeks() {
 
 	require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader-sixweeks.php';
 
@@ -11,7 +11,7 @@ function shows_six_weeks() {
 	?>
 
 	<section id="shows_weekly">
-	<?php 
+	<?php
 	if($shows):
 		$yesterday = "";
 		$previous_performance = "";
@@ -24,7 +24,7 @@ function shows_six_weeks() {
 				$performace_terms = $shows[$performance->show_id]->tags;
 				?>
 				<tr class="row<?php echo $i ?>" <?php foreach ($performace_terms as $key => $performace_term): ?>data-term="<?php echo $performace_term; ?>" <?php endforeach; ?>>
-					
+
 					<td valign="top">
 						<?php if($previous_performance && $performance->start_time->format('j M') == $previous_performance->start_time->format('j M')):
 						else: ?>
@@ -35,7 +35,7 @@ function shows_six_weeks() {
 						<h3><small><?php echo $performance->start_time->format('H:i'); ?></small></h3>
 					</td>
 					<td width="20%" valign="top">
-						<?php 
+						<?php
 						$poster = get_the_post_thumbnail($show_id, 'poster');
 						if($poster):
 							echo $poster;
@@ -65,9 +65,9 @@ function shows_six_weeks() {
 						?>
 					 	<p style="margin-top:12px;"><?php echo book_online_button($availabilities[$performance->id],$av_helper,$performance,$is_blockbuster,$path_to_show); ?></p>
 					</td>
-			  
+
 					<?php $previous_performance = $performance; ?>
-			  
+
 				  </tr>
 				  <?php endif; ?>
 
@@ -77,5 +77,5 @@ function shows_six_weeks() {
 		<?php endif; ?>
 	</section>
 
-	<?php 
+	<?php
 }

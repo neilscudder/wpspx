@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-add_shortcode( 'book_online', 'load_book_online' );
-function load_book_online() {
+add_shortcode( 'spektrix_book_online', 'spektrix_load_book_online' );
+function spektrix_load_book_online() {
 
 	$performance = get_query_var('performance');
 
@@ -14,8 +14,8 @@ function load_book_online() {
 	<div class="row">
 		<div class="span12">
 			<?php echo $spektrix_iframe_url->render_iframe(); ?>
-		</div>    
+		</div>
 	</div>
-	
-	<?php 
+
+	<?php
 }

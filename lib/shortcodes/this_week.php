@@ -1,7 +1,7 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-add_shortcode( 'this_week', 'shows_this_week' );
-function shows_this_week() {
+add_shortcode( 'spektrix_this_week', 'spektrix_shows_this_week' );
+function spektrix_shows_this_week() {
 
 	require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader-thisweek.php';
 
@@ -12,7 +12,7 @@ function shows_this_week() {
 	?>
 
 	<section id="shows_weekly">
-	<?php 
+	<?php
 	if($shows):
 		$yesterday = "";
 		$previous_performance = "";
@@ -25,7 +25,7 @@ function shows_this_week() {
 				$performace_terms = $shows[$performance->show_id]->tags;
 				?>
 				<tr class="row<?php echo $i ?>" <?php foreach ($performace_terms as $key => $performace_term): ?>data-term="<?php echo $performace_term; ?>" <?php endforeach; ?>>
-					
+
 					<td valign="top">
 						<?php if($previous_performance && $performance->start_time->format('j M') == $previous_performance->start_time->format('j M')):
 						else: ?>
@@ -36,7 +36,7 @@ function shows_this_week() {
 						<h3><small><?php echo $performance->start_time->format('H:i'); ?></small></h3>
 					</td>
 					<td width="20%" valign="top">
-						<?php 
+						<?php
 						$poster = get_the_post_thumbnail($performance->show_id, 'poster');
 						if($poster):
 							echo $poster;
@@ -67,9 +67,9 @@ function shows_this_week() {
 						?>
 					 	<p style="margin-top:12px;"><?php echo book_online_button($availabilities[$performance->id],$av_helper,$performance,$is_blockbuster,$path_to_show); ?></p>
 					</td>
-			  
+
 					<?php $previous_performance = $performance; ?>
-			  
+
 				  </tr>
 				  <?php endif; ?>
 
@@ -79,5 +79,5 @@ function shows_this_week() {
 		<?php endif; ?>
 	</section>
 
-	<?php 
+	<?php
 }

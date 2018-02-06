@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-add_shortcode( 'matinees', 'shows_matinees' );
-function shows_matinees() {
+add_shortcode( 'spektrix_matinees', 'spektrix_shows_matinees' );
+function spektrix_shows_matinees() {
 
 	$api = new Spektrix();
 	$shows = Show::find_all_in_future();
@@ -13,7 +13,7 @@ function shows_matinees() {
 	?>
 
 	<section id="shows_matinees">
-		<?php 
+		<?php
 		foreach($all_performances as $performance):
 			if($performance->start_time->format('H') < 18):
 				$performances[] = $performance;
@@ -31,7 +31,7 @@ function shows_matinees() {
 				$performace_terms = $shows[$performance->show_id]->tags;
 				?>
 				<tr class="row<?php echo $i ?>" <?php foreach ($performace_terms as $key => $performace_term): ?>data-term="<?php echo $performace_term; ?>" <?php endforeach; ?>>
-					
+
 					<td valign="top">
 						<?php if($previous_performance && $performance->start_time->format('j M') == $previous_performance->start_time->format('j M')):
 						else: ?>
@@ -42,7 +42,7 @@ function shows_matinees() {
 						<h3><small><?php echo $performance->start_time->format('H:i'); ?></small></h3>
 					</td>
 					<td width="20%" valign="top">
-						<?php 
+						<?php
 						$poster = get_the_post_thumbnail($performance->show_id, 'poster');
 						if($poster):
 							echo $poster;
@@ -73,9 +73,9 @@ function shows_matinees() {
 						?>
 					 	<p style="margin-top:12px;"><?php echo book_online_button($availabilities[$performance->id],$av_helper,$performance,$is_blockbuster,$path_to_show); ?></p>
 					</td>
-			  
+
 					<?php $previous_performance = $performance; ?>
-			  
+
 				  </tr>
 				  <?php endif; ?>
 
@@ -85,5 +85,5 @@ function shows_matinees() {
 
 	</section>
 
-	<?php 
+	<?php
 }

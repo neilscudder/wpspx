@@ -1,6 +1,6 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-add_shortcode( 'next_show', 'shows_next_show' );
-function shows_next_show() {
+add_shortcode( 'spektrix_next_show', 'spektrix_shows_next_show' );
+function spektrix_shows_next_show() {
 
 	//require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader-sixweeks.php';
 
@@ -13,7 +13,7 @@ function shows_next_show() {
 	?>
 
 	<section id="shows_next">
-	<?php 
+	<?php
 	$show_ids = convert_to_array_of_ids($shows);
 
 	$db_shows = get_posts(array(
@@ -41,7 +41,7 @@ function shows_next_show() {
 		?>
 		<table>
 			<tr class="row">
-				
+
 				<td valign="top">
 					<h3><?php echo $performance->start_time->format('D j M') ?></h3>
 				</td>
@@ -50,7 +50,7 @@ function shows_next_show() {
 				</td>
 				<td width="20%" valign="top">
 
-					<?php 
+					<?php
 					if(has_post_thumbnail()):
 						the_post_thumbnail('poster');
 					else: ?>
@@ -87,9 +87,9 @@ function shows_next_show() {
 
 		<?php die();
 		endif;
-	endforeach;	
+	endforeach;
 	?>
 	</section>
 
-	<?php 
+	<?php
 }

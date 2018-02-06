@@ -1,7 +1,7 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-add_shortcode( 'all_upcoming_shows', 'show_all_upcoming_shows' );
-function show_all_upcoming_shows() {
+add_shortcode( 'spektrix_all_upcoming_shows', 'spektrix_show_all_upcoming_shows' );
+function spektrix_show_all_upcoming_shows() {
 
 	require WPPSX_PLUGIN_DIR . 'lib/helpers/show-loader.php';
 
@@ -34,7 +34,7 @@ function show_all_upcoming_shows() {
 
 		<div class="row">
 			<div class="show-filter span12">
-			
+
 				<h3>Showing in</h3>
 				<hr>
 				<ul class="nav nav-pills month-jump">
@@ -51,7 +51,7 @@ function show_all_upcoming_shows() {
 
 			<h2 id="<?php echo strtolower(str_replace(' ','-',$month)) ?>" class="month"><?php echo $month ?></h2>
 			<div class="row">
-			<?php 
+			<?php
 				$i = 0;foreach($shows as $show) {
 				$performances = $show[1];
 				$show = $show[0];
@@ -59,21 +59,21 @@ function show_all_upcoming_shows() {
 				$is_sold_out = false;
 
 				$this_show_performances = $show->get_performances();
-				$now = new DateTime(); $number_tikets = array();
+				$now = new DateTime(); $number_tickets = array();
 				foreach($this_show_performances as $this_show_performance):
 					if($this_show_performance->start_time > $now):
-						$number_tikets[] = $availabilities[$this_show_performance->id]->available;
+						$number_tickets[] = $availabilities[$this_show_performance->id]->available;
 					endif;
 				endforeach;
-				if(array_sum($number_tikets) === 0) {
+				if(array_sum($number_tickets) === 0) {
 					$is_sold_out = true;
-				} 
+				}
 				?>
-				<div data-tickets-left="<?php echo array_sum($number_tikets); ?>" 
+				<div data-tickets-left="<?php echo array_sum($number_tickets); ?>"
 					class="span2 show <?php echo $show->website_category; ?> <?php if($is_sold_out): ?>sold-out<?php endif; ?>">
 					<?php if($is_sold_out): ?><div class="sold-out-container"></div><?php endif; ?>
 					<a href="<?php echo get_permalink($show_id); ?>">
-						<?php 
+						<?php
 						$poster = get_the_post_thumbnail($show_id, 'poster');
 						if($poster):
 							echo $poster;
@@ -90,8 +90,8 @@ function show_all_upcoming_shows() {
 							$show_terms = get_the_terms($show_id, 'genres');
 							foreach ($show_terms as $show_term): ?>
 								<li><?php echo $show_term->name; ?></li>
-							<?php 
-							endforeach; 
+							<?php
+							endforeach;
 							?>
 						</ul>
 
@@ -104,5 +104,5 @@ function show_all_upcoming_shows() {
 
 	</section>
 
-	<?php 
+	<?php
 }
