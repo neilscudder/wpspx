@@ -9,7 +9,7 @@ class iFrame
   public $secure;
 
   private $secure_prefix = SPEKTRIX_WEB_URL;
-  private $insecure_prefix = SPEKTRIX_WEB_URL;
+  private $insecure_prefix = SPEKTRIX_WEB_INSECURE_URL;
 
   function __construct($page_name, $params = false, $secure = false){
     $this->page_name = strtolower($page_name);

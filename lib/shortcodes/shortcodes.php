@@ -14,3 +14,5 @@ require WPPSX_PLUGIN_DIR . 'lib/shortcodes/my_account.php';
 require WPPSX_PLUGIN_DIR . 'lib/shortcodes/checkout.php';
 require WPPSX_PLUGIN_DIR . 'lib/shortcodes/book_online.php';
 require WPPSX_PLUGIN_DIR . 'lib/shortcodes/basket.php';
+require WPPSX_PLUGIN_DIR . 'lib/shortcodes/event_calendar.php';
+require WPPSX_PLUGIN_DIR . 'lib/shortcodes/memberships_donations.php';

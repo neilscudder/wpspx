@@ -6,10 +6,11 @@ function spektrix_load_book_online() {
 
 	if(strpos($performance,'event') === 0):
 		$pieces = explode('-',$performance);
-		$spektrix_iframe_url = new iFrame('EventDetails',array('EventId' => $pieces[1]));
+		$spektrix_iframe_url = new iFrame('EventDetails',array('EventId' => $pieces[1]), false);
 	else:
-		$spektrix_iframe_url = new iFrame('ChooseSeats',array('EventInstanceId' => $performance));
+		$spektrix_iframe_url = new iFrame('ChooseSeats',array('EventInstanceId' => $performance), false);
 	endif;
+		d($spektrix_iframe_url);
 	?>
 	<div class="row">
 		<div class="span12">
