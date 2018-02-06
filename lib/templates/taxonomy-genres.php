@@ -82,17 +82,17 @@ get_header(); ?>
 						$is_sold_out = false;
 
 						$this_show_performances = $show->get_performances();
-						$now = new DateTime(); $number_tikets = array();
+						$now = new DateTime(); $number_tickets = array();
 						foreach($this_show_performances as $this_show_performance):
 							if($this_show_performance->start_time > $now):
-								$number_tikets[] = $availabilities[$this_show_performance->id]->available;
+								$number_tickets[] = $availabilities[$this_show_performance->id]->available;
 							endif;
 						endforeach;
-						if(array_sum($number_tikets) === 0) {
+						if(array_sum($number_tickets) === 0) {
 							$is_sold_out = true;
 						}
 						?>
-						<div data-tickets-left="<?php echo array_sum($number_tikets); ?>"
+						<div data-tickets-left="<?php echo array_sum($number_tickets); ?>"
 							class="span2 show <?php echo $show->website_category; ?> <?php if($is_sold_out): ?>sold-out<?php endif; ?>">
 							<?php if($is_sold_out): ?><div class="sold-out-container"></div><?php endif; ?>
 							<a href="<?php echo get_permalink($show_id); ?>">

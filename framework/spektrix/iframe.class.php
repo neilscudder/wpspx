@@ -18,7 +18,7 @@ class iFrame
   }
 
   public function iframe_url(){
-    return $this->prefix($this->secure) . $this->page_name . '.aspx?' . $this->params_string . 'stylesheet=style.css&resize=true';
+    return $this->prefix($this->secure) . $this->page_name . '.aspx?' . $this->params_string . 'resize=true';
   }
 
   public function render_iframe(){

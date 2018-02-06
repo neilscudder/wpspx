@@ -1,14 +1,14 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
-add_shortcode( 'basket', 'load_basket' );
-function load_basket() {
+add_shortcode( 'spektrix_basket', 'spektrix_load_basket' );
+function spektrix_load_basket() {
 
 	$spektrix_iframe_url = new iFrame('Basket2');
 	?>
 	<div class="row">
 		<div class="span12">
 			<?php echo $spektrix_iframe_url->render_iframe(); ?>
-		</div>    
+		</div>
 	</div>
-	
-	<?php 
+
+	<?php
 }
