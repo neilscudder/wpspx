@@ -33,14 +33,15 @@ if (defined('WPSPX')) {
 	define( 'WPPSX_PLUGIN_DIR', plugin_dir_path( __FILE__ ));
 	define( 'WPPSX_PLUGIN_URL', plugin_dir_url(__FILE__));
 
-	register_activation_hook(__FILE__,'create_pages'); 
-	
+	register_activation_hook(__FILE__,'create_pages');
+
 	// load config settings
 	require WPPSX_PLUGIN_DIR . 'config.php';
 
 	//  define loaded and local plugin dir
 	define( 'SPEKTRIX_URL', 'https://api.system.spektrix.com/'.SPEKTRIX_USER.'/api/v2/');
 	define( 'SPEKTRIX_WEB_URL', 'https://system.spektrix.com/'.SPEKTRIX_USER.'/website/secure/');
+	define( 'SPEKTRIX_WEB_INSECURE_URL', 'https://system.spektrix.com/'.SPEKTRIX_USER.'/website/');
 	define( 'THEME_SLUG', wp_get_theme()->get( 'Name' ));
 
 	// load plugin settings
