@@ -151,6 +151,15 @@ function get_performance_dates($performances){
   return $dates;
 }
 
+function get_performance_dates_unix($performances){
+  $dates = array();
+  foreach($performances as $performance){
+    $dates[] = $performance->start_time->format('U');
+  }
+  $dates = array_unique($dates);
+  return $dates;
+}
+
 function any_accessible($performances){
   $any = false;
   foreach($performances as $performance){
