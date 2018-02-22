@@ -35,14 +35,14 @@ function spektrix_record_inner_custom_box( $post ) {
 		wp_nonce_field( plugin_basename( __FILE__ ), 'wpspx' );
 		$shows_in_spektrix = Show::find_all();
 		$shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1));
-    
+
 		// Create an array of IDs of shows in WP.
     	// (We use this to ensure we don't ask the user to choose a shows in Spektrix that has already been added to WP)
 		$wp_shows = array();
 		foreach($shows_in_wordpress as $siw){
 			$wp_shows[] = get_post_meta($siw->ID,'_spektrix_id',true);
 		}
-		
+
 		echo '<label for="myplugin_new_field">';
 		_e("Choose a show from Spektrix", 'wpspx' );
 		echo '</label> ';
@@ -85,7 +85,7 @@ function wpspx_save_postdata($post_id) {
 	// sanitize user input
 	if(isset($_POST['not_spektrix']) == "1"){
 		$override_title = sanitize_text_field($_POST['spektrix_override']);
-		
+
 		//remove action to prevent infinite loop
 		remove_action('save_post','wpspx_save_postdata');
 		wp_update_post(array('ID'=>$post_ID,'post_title'=>$override_title,'post_name'=>str_replace(' ','-',$override_title)));
@@ -131,10 +131,5 @@ function wpse_110427_hide_title($post) {
 	global $pagenow;
 	if (!empty($pagenow) && ('post-new.php' === $pagenow)){
 		remove_post_type_support('shows', 'title');
-	}
-	if(isset($_GET['post'])) { 
-		if(get_post_meta($_GET['post'],'_spektrix_id',true)){
-			remove_post_type_support('shows', 'editor');
-		}
 	}
 }

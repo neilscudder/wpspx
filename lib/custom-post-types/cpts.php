@@ -1,12 +1,12 @@
 <?php if (!defined( 'ABSPATH' ) ) die( 'Forbidden' );
 
-	/* 	
+	/*
 	Creating a Custom Post Type is blissfully simple ...
 	Simply add your Post Types to the $cpts array.
 	The first descriptor should be lowercase and plural
 	The second descriptor should be singular and title case
-	The third descriptor should be plural and title case 
-	The fourth descriptor should be icon (https://developer.wordpress.org/resource/dashicons) 
+	The third descriptor should be plural and title case
+	The fourth descriptor should be icon (https://developer.wordpress.org/resource/dashicons)
 	The fith descriptor should be the supports array
 	*/
 
@@ -20,18 +20,17 @@
 				'title',
 				'editor',
 				'thumbnail',
-				'comments'
 			)
 		),
 	);
 
 
 	function cpts_register() {
-		
+
 		global $cpts;
-		
+
 		foreach($cpts as $cpt){
-			
+
 			$cpt_wp_name = $cpt[0];
 			$cpt_singular = $cpt[1];
 			$cpt_plural = $cpt[2];
@@ -48,7 +47,7 @@
 				'view_item' 			=> __('View '.$cpt_singular),
 				'search_items' 			=> __('Search '.$cpt_plural),
 				'not_found' 			=>  __('No '.$cpt_plural.' Found'),
-				'not_found_in_trash' 	=> __('No '.$cpt_plural.' Found in Trash'), 
+				'not_found_in_trash' 	=> __('No '.$cpt_plural.' Found in Trash'),
 				'parent_item_colon' 	=> '',
 			);
 
@@ -66,9 +65,9 @@
 			);
 
 			register_post_type($cpt_wp_name, $args );
-			
+
 		}
-		
+
 	}
 
 	//create custom post type
