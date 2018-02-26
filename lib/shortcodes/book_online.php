@@ -10,12 +10,7 @@ function spektrix_load_book_online() {
 	else:
 		$spektrix_iframe_url = new iFrame('ChooseSeats',array('EventInstanceId' => $performance), false);
 	endif;
-	?>
-	<div class="row">
-		<div class="span12">
-			<?php echo $spektrix_iframe_url->render_iframe(); ?>
-		</div>
-	</div>
 
-	<?php
+  echo $spektrix_iframe_url->render_iframe();
+
 }

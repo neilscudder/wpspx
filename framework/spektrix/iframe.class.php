@@ -22,7 +22,7 @@ class iFrame
   }
 
   public function render_iframe(){
-    return '<iframe name="SpektrixIFrame" id="SpektrixIFrame" src="' . $this->iframe_url() . '" frameborder="0" height="400" width="100%" onload="scroll(0,0);"></iframe>';
+    return '<iframe name="SpektrixIFrame" id="SpektrixIFrame" src="' . $this->iframe_url() . '" frameborder="0" height="400" width="100%" onload="window.parent.parent.scrollTo(0,0)" scrolling="no"></iframe>';
   }
 
   public function is_insecure(){
