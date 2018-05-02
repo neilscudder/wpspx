@@ -34,7 +34,7 @@ function spektrix_record_inner_custom_box( $post ) {
 		// Use nonce for verification
 		wp_nonce_field( plugin_basename( __FILE__ ), 'wpspx' );
 		$shows_in_spektrix = Show::find_all();
-		$shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1));
+		$shows_in_wordpress = get_posts(array('post_type'=>'shows','posts_per_page'=>-1,'post_status' => 'any'));
 
 		// Create an array of IDs of shows in WP.
     	// (We use this to ensure we don't ask the user to choose a shows in Spektrix that has already been added to WP)
