@@ -74,11 +74,11 @@ class Spektrix
     return $string;
   }
 
-  function get_object($resource,$params=array())
+  function get_object($resource, $params = array(), $skip_cache = false)
   {
     $file = new CachedFile($resource, $params);
     try {
-      if($file->is_cached_and_fresh()){
+      if(!$skip_cache && $file->is_cached_and_fresh()){
         $xml_string = $file->retrieve();
       } else {
         $xml_url = $this->build_url($resource,$params);
@@ -118,9 +118,9 @@ class Spektrix
     return $this->get_object('events',array('event_id'=>$id))->Event;
   }
 
-  function get_events()
+  function get_events($skip_cache = false)
   {
-    return $this->get_object('events');
+    return $this->get_object('events',array(), $skip_cache);
   }
 
   function get_shows_until($unix_until_date)

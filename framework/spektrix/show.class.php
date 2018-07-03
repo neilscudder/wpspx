@@ -8,7 +8,7 @@
  * "An event in Spektrix can be thought of as a ‘show’. It encapsulates the descriptive data about an event, such as its Name and Description. It is a container for instances."
  */
 class Show extends Spektrix
-{ 
+{
   public $id;
   public $name;
   public $short_description;
@@ -17,23 +17,23 @@ class Show extends Spektrix
   public $image_thumb;
   public $duration;
   public $is_on_sale;
-  
+
   public $related_events;
   public $tags;
-  
+
   public $venue;
   public $season;
   private $account_code;
   private $sales_type;
   private $vat_code_for_accounts;
-  
+
   function __construct($event)
   {
     //If the $event variable isn't the event object, create it from the ID
     if(!is_object($event)) {
       $event = $this->get_event($event);
     }
-    
+
     //Create an array of related events
     $related_events = array();
     if($event->RelatedEvents){
@@ -43,7 +43,7 @@ class Show extends Spektrix
         }
       }
     }
-    
+
     $this->id = (integer) $event->attributes()->id;
     $this->name = (string) $event->Name;
     $this->short_description = (string) $event->Description;
@@ -52,36 +52,36 @@ class Show extends Spektrix
     $this->image_thumb = (string) $event->ThumbnailUrl;
     $this->is_on_sale = (boolean) $event->IsOnSale;
     $this->duration = (integer) $event->Duration;
-    
+
     $this->related_events = (array) $related_events;
-    
+
     foreach($event->Attribute as $object){
       $name = (string) $object->Name;
       $name = strtolower($name);
       $name = str_replace(' ','_',$name);
       $this->$name = (string) $object->Value;
     }
-    
+
     $tags = array();
-    
-    foreach($event->Attribute as $object){  
+
+    foreach($event->Attribute as $object){
       $name = (string) $object->Name;
       $name = strtolower($name);
       if($object->Value == 1){
         $tags[] = $name;
       }
     }
-    
+
     $this->tags = (array) $tags;
   }
-  
-  static function find_all()
+
+  static function find_all( $skip_cache = false )
   {
     $api = new Spektrix();
-    $shows = $api->get_events();
+    $shows = $api->get_events($skip_cache);
     return $api->collect_shows($shows);
   }
-  
+
   static function find_all_in_future()
   {
     $api = new Spektrix();
@@ -89,7 +89,7 @@ class Show extends Spektrix
     $shows = $api->get_shows_until($eternity);
     return $api->collect_shows($shows);
   }
-  
+
   static function this_week()
   {
     $api = new Spektrix();
@@ -97,7 +97,7 @@ class Show extends Spektrix
     $shows = $api->get_shows_until($next_week);
     return $api->collect_shows($shows);
   }
-  
+
   static function six_weeks()
   {
     $api = new Spektrix();
@@ -105,18 +105,18 @@ class Show extends Spektrix
     $shows = $api->get_shows_until($six_weeks);
     return $api->collect_shows($shows);
   }
-  
+
   function get_show_performances($show_id)
   {
     $performances = $this->get_object('instances',array('event_id'=>$show_id));
     return $this->collect_performances($performances);
   }
-  
+
   function get_performances()
   {
     return $this->get_show_performances($this->id);
   }
-  
+
   function get_price_lists()
   {
     $pricelists = $this->get_price_list_for_show($this->id);
@@ -126,7 +126,7 @@ class Show extends Spektrix
     }
     return $collection;
   }
-  
+
   function tags_as_class()
   {
     $classes = implode(',',$this->tags);
@@ -134,7 +134,7 @@ class Show extends Spektrix
     $classes = str_replace(',',' ',$classes);
     return $classes;
   }
-  
+
 }
 
 function convert_to_array_of_ids($collection){
@@ -165,7 +165,7 @@ function get_wp_shows_from_spektrix_shows($shows) {
     $spektrix_id = get_post_meta($db_show->ID,'_spektrix_id',true);
     $wp_shows[$spektrix_id] = $db_show->ID;
   endforeach;
-  
+
   return $wp_shows;
 }
 

@@ -2,17 +2,14 @@
 
 /*
  Plugin Name: WPSPX (WordPress & Spektrix)
- Plugin URI: http://pixelpudu.com/wpspx
- Description: A WordPress plugin that intergrates WordPress with Spektrix API V2
+ Description: A WordPress plugin that intergrates WordPress with Spektrix API V2. NOTE: This plugin has been forked and modified from Martin Greenwood's "WPSPX" plugin: http://pixelpudu.com/wpspx
  Version: 1.1.0
- Author: Martin Greenwood
- Author URI: http://www.pixelpudu.com/
  License: GPL2+
  Text Domain: wpspx
  Domain Path: /languages
  License: GPL v2 or later
 
- Copyright © 2016 Martin Greenwood
+ This plugin is a fork of WPSPX (WordPress & Spektrix) by Martin Greenwood.
 
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -52,8 +49,6 @@ if (defined('WPSPX')) {
 	function add_action_links ( $links ) {
 	    $mylinks = array(
 	        '<a href="' . admin_url( 'options-general.php?page=wpspx-settings' ) . '">Settings</a>',
-	        '<a target="_blank" href="https://pixelpudu.com/submit-ticket/">Support</a>',
-	        '<a target="_blank" href="https://paypal.me/martingreenwood">Donate</a>',
 	    );
 	    return array_merge( $links, $mylinks );
 	}
