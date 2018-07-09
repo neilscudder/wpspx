@@ -94,7 +94,7 @@ class Spektrix
     }
     catch (Exception $e){ ?>
         <div class="notice notice-error">
-          <p>Oops, <?php echo $e->getMessage(); ?>. Double check you settings are correct or <a href="https://pixelpudu.freshdesk.com/">contact us for support</a></p>
+          <p>Oops, <?php echo $e->getMessage(); ?>. Double check you settings are correct.</a></p>
         </div>
     <?php
     }
@@ -113,9 +113,9 @@ class Spektrix
     return $xml_as_object;
   }
 
-  function get_event($id)
+  function get_event($id, $skip_cache = false)
   {
-    return $this->get_object('events',array('event_id'=>$id))->Event;
+    return $this->get_object('events',array('event_id'=>$id), $skip_cache)->Event;
   }
 
   function get_events($skip_cache = false)
