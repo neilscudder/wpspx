@@ -94,7 +94,7 @@ class Spektrix
     }
     catch (Exception $e){ ?>
         <div class="notice notice-error">
-          <p>Oops, <?php echo $e->getMessage(); ?>. Double check you settings are correct.</a></p>
+          <p>Oops, <?php echo $e->getMessage(); ?>. Double check your settings are correct.</a></p>
         </div>
     <?php
     }
