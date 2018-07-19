@@ -4,99 +4,99 @@
 	* Spektrix is a base class for hitting the API and retrieving data
 	*/
 
-class Spektrix
-{
-
-  private static $api_key = SPEKTRIX_API;
-  private static $api_url = SPEKTRIX_URL;
-  protected $wp_theme = THEME_SLUG;
-
-  public static function get_path_to_cert()
+  class Spektrix
   {
-    return SPEKTRIX_CERT;
-  }
 
-  public static function get_path_to_key()
-  {
-    return SPEKTRIX_KEY;
-  }
+    private static $api_key = SPEKTRIX_API;
+    private static $api_url = SPEKTRIX_URL;
+    protected $wp_theme = THEME_SLUG;
 
-  function build_url($resource,$params = array())
-  {
-    $params_string = "";
-    if(empty($params)):
-      $url = self::$api_url.$resource."?&api_key=".self::$api_key;
-    else:
-
-      foreach($params as $k => $v):
-        $params_string .= $k . '=' . $v . '&';
-      endforeach;
-
-      $url = self::$api_url.$resource."?".$params_string."api_key=".self::$api_key;
-    endif;
-
-    $url.= "&all=true";
-
-    return $url;
-  }
-
-  function get_xml($xml_url)
-  {
-    $curl = curl_init();
-    $options = array(
-      CURLOPT_URL => $xml_url,
-      CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_SSLCERT => self::get_path_to_cert(),
-      CURLOPT_SSLKEY => self::get_path_to_key()
-    );
-    curl_setopt_array($curl, $options);
-    $string = curl_exec($curl);
-    return $string;
-  }
-
-  function post_xml($xml_url,$params)
-  {
-    $xml_builder = '<?xml version="1.0" encoding="utf-8"?>';
-    $curl = curl_init();
-    $options = array(
-      CURLOPT_HTTPHEADER => array('Content-Type: text/xml'),
-      CURLOPT_URL => $xml_url,
-      CURLOPT_HEADER => 0,
-      CURLOPT_RETURNTRANSFER => 1,
-      CURLOPT_POST => 1,
-      CURLOPT_POSTFIELDS => $xml_builder,
-      CURLOPT_SSLCERT => self::get_path_to_cert(),
-      CURLOPT_SSLKEY => self::get_path_to_key()
-    );
-  	curl_setopt_array($curl, $options);
-  	$string = curl_exec($curl);
-  	curl_close($curl);
-    return $string;
-  }
-
-  function get_object($resource, $params = array(), $skip_cache = false)
-  {
-    $file = new CachedFile($resource, $params);
-    try {
-      if(!$skip_cache && $file->is_cached_and_fresh()){
-        $xml_string = $file->retrieve();
-      } else {
-        $xml_url = $this->build_url($resource,$params);
-        $xml_string = $this->get_xml($xml_url);
-        $file->store($xml_string);
-      }
-      if($xml_string){
-        $xml_as_object = simplexml_load_string($xml_string);
-        return $xml_as_object;
-      } else {
-        throw new Exception('no XML received from Spektrix');
-      }
+    public static function get_path_to_cert()
+    {
+      return SPEKTRIX_CERT;
     }
-    catch (Exception $e){ ?>
-        <div class="notice notice-error">
-          <p>Oops, <?php echo $e->getMessage(); ?>. Double check your settings are correct.</a></p>
-        </div>
-    <?php
+
+    public static function get_path_to_key()
+    {
+      return SPEKTRIX_KEY;
+    }
+
+    function build_url($resource,$params = array())
+    {
+      $params_string = "";
+      if(empty($params)):
+        $url = self::$api_url.$resource."?&api_key=".self::$api_key;
+      else:
+
+        foreach($params as $k => $v):
+          $params_string .= $k . '=' . $v . '&';
+        endforeach;
+
+        $url = self::$api_url.$resource."?".$params_string."api_key=".self::$api_key;
+      endif;
+
+      $url.= "&all=true";
+
+      return $url;
+    }
+
+    function get_xml($xml_url)
+    {
+      $curl = curl_init();
+      $options = array(
+        CURLOPT_URL => $xml_url,
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_SSLCERT => self::get_path_to_cert(),
+        CURLOPT_SSLKEY => self::get_path_to_key()
+      );
+      curl_setopt_array($curl, $options);
+      $string = curl_exec($curl);
+      return $string;
+    }
+
+    function post_xml($xml_url,$params)
+    {
+      $xml_builder = '<?xml version="1.0" encoding="utf-8"?>';
+      $curl = curl_init();
+      $options = array(
+        CURLOPT_HTTPHEADER => array('Content-Type: text/xml'),
+        CURLOPT_URL => $xml_url,
+        CURLOPT_HEADER => 0,
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_POST => 1,
+        CURLOPT_POSTFIELDS => $xml_builder,
+        CURLOPT_SSLCERT => self::get_path_to_cert(),
+        CURLOPT_SSLKEY => self::get_path_to_key()
+      );
+      curl_setopt_array($curl, $options);
+      $string = curl_exec($curl);
+      curl_close($curl);
+      return $string;
+    }
+
+    function get_object($resource, $params = array(), $skip_cache = false)
+    {
+      $file = new CachedFile($resource, $params);
+      try {
+        if(!$skip_cache && $file->is_cached_and_fresh()){
+          $xml_string = $file->retrieve();
+        } else {
+          $xml_url = $this->build_url($resource,$params);
+          $xml_string = $this->get_xml($xml_url);
+          $file->store($xml_string);
+        }
+        if($xml_string){
+          $xml_as_object = simplexml_load_string($xml_string);
+          return $xml_as_object;
+        } else {
+          throw new Exception('no XML received from Spektrix');
+        }
+      }
+      catch (Exception $e){ ?>
+      <div class="notice notice-error">
+        <p>Oops, <?php echo $e->getMessage(); ?>. Double check your settings are correct.</a></p>
+      </div>
+      <?php
     }
   }
 
@@ -121,6 +121,20 @@ class Spektrix
   function get_events($skip_cache = false)
   {
     return $this->get_object('events',array(), $skip_cache);
+  }
+
+  function get_shows_in_range($unix_from_date, $unix_until_date)
+  {
+    $from_date = date('Y-m-d\TH:i:s\Z', $unix_from_date);
+    $until_date = date('Y-m-d\TH:i:s\Z',$unix_until_date);
+    return $this->get_object('events',array('instance_start_from'=>$from_date,'instance_start_to'=>$until_date));
+  }
+
+  function get_performances_in_range($unix_from_date, $unix_until_date)
+  {
+    $from_date = date('Y-m-d\TH:i:s\Z', $unix_from_date);
+    $until_date = date('Y-m-d\TH:i:s\Z',$unix_until_date);
+    return $this->get_object('instances',array('instance_start_from'=>$from_date,'instance_start_to'=>$until_date));
   }
 
   function get_shows_until($unix_until_date)

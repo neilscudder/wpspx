@@ -43,7 +43,6 @@ class Show extends Spektrix
         }
       }
     }
-
     $this->id = (integer) $event->attributes()->id;
     $this->name = (string) $event->Name;
     $this->short_description = (string) $event->Description;
